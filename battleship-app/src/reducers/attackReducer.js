@@ -1,33 +1,30 @@
-const defaultState = {
-  shipSpaceCount: 17,
-  gameBoard: [
-    ["", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "*", "*", "*", "*", "*", ""],
-    ["", "*", "", "", "", "", "", "", "", ""],
-    ["", "*", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "*", "*", "*", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "*", ""],
-    ["*", "*", "*", "*", "", "", "", "", "*", ""],
-    ["", "", "", "", "", "", "", "", "*", ""],
-    ["", "", "", "", "", "", "", "", "", ""],
-  ],
-};
+const defaultState = [
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "*", "*", "*", "*", "*", ""],
+  ["", "*", "", "", "", "", "", "", "", ""],
+  ["", "*", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "*", "*", "*", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "*", ""],
+  ["*", "*", "*", "*", "", "", "", "", "*", ""],
+  ["", "", "", "", "", "", "", "", "*", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+];
 
 export default function attackReducer(state = defaultState, action) {
-  let count = state.shipSpaceCount;
-  const gameBoard = state.gameBoard;
+  //let count = state.shipSpaceCount;
+  //const gameBoard = state.gameBoard;
   if (action.type === "boardClick") {
-    const value = gameBoard[action.x][action.y];
+    const value = state[action.x][action.y];
     if (value === "*") {
-      gameBoard[action.x][action.y] = "X";
-      count--;
-    } else {
-      gameBoard[action.x][action.y] = "V";
+      state[action.x][action.y] = "X";
+    } else if (value === "") {
+      state[action.x][action.y] = "V";
     }
     // check winning condition;
-    const updatedGameBoard = [...gameBoard];
-    return { count, updatedGameBoard };
+    //const updatedGameBoard = [...gameBoard];
+    //return { shipSpaceCount: count, gameBoard: updatedGameBoard };
+    return [...state];
   }
   return state;
 }

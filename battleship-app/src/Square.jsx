@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './style/Square.css';
 
 export default function Square(props) {
 
-    const {symbol, boardState, count, x, y} = props;
-    const [bgColor, setBgColor] = useState("");
+    // const {symbol, boardState, x, y} = props;
+    const symbol = props.symbol;
+    const boardState = useSelector((state) => state.attack);
+    let bgColor = "defaultBg";
 
     if (symbol === '*') {
-        setBgColor("redBg");
+        bgColor = "redBg";
     } else if (symbol === "") {
-        setBgColor("greenBg");
+        bgColor = "greenBg";
     } 
 
     const dispatch = useDispatch();
@@ -21,8 +23,10 @@ export default function Square(props) {
                 type: 'boardClick',
                 x: props.x,
                 y: props.y,
-                count: props.count,
+                picked: boardState[props.x][props.y]
             })}
-        } id="square" class={bgColor}></div>
+        } id="square" class={bgColor}>
+            {symbol === "*" ? "" : symbol}
+        </div>
     );
 }
