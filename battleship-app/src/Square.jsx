@@ -9,9 +9,9 @@ export default function Square(props) {
     const boardState = useSelector((state) => state.attack);
     let bgColor = "defaultBg";
 
-    if (symbol === '*') {
+    if (symbol === 'X') {
         bgColor = "redBg";
-    } else if (symbol === "") {
+    } else if (symbol === "V") {
         bgColor = "greenBg";
     } 
 
