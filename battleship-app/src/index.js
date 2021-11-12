@@ -13,7 +13,19 @@ element of the HTML document (this is actually using the DOM API to find this el
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App.jsx";
+import Board from "./Board.jsx";
 import "./index.css";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducers from "./reducers/reducers";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const store = createStore(reducers);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Board />
+  </Provider>,
+  document.getElementById("root")
+);
+
+//ReactDOM.render(<Board />, document.getElementById("root"));

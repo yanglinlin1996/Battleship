@@ -1,0 +1,17 @@
+#square {
+  background-color: gainsboro;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.greenBg {
+  background-color: lightgreen;
+  color: green;
+}
+
+.redBg {
+  background-color: lightpink;
+  color: palevioletred;
+}
