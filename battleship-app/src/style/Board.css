@@ -1,6 +1,6 @@
 #board {
   display: grid;
-  grid-template-columns: repeat(10, 100px);
-  grid-template-rows: repeat(10, 100px);
-  column-gap: 15px;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+  column-gap: 5px;
 }

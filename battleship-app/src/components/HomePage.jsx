@@ -11,11 +11,11 @@ export default function Home() {
             <div className="modeContainer">
                 <h2>Please select game mode</h2>
                 <Stack direction="row" spacing={4}>
-                    <Button variant="contained" className="modeButton">Free Play</Button>
-                    <Button variant="contained" className="modeButton">Normal Play</Button>
+                    <Button variant="contained" className="modeButton" href="/freeplay">Free Play</Button>
+                    <Button variant="contained" className="modeButton" href="/normalplay">Normal Play</Button>
                 </Stack>
             </div>
-            <Link href="/rules">How to Play Battleship</Link>
+            <Link href="/rule">How to Play Battleship</Link>
         </div>
         
     )

@@ -13,19 +13,28 @@ element of the HTML document (this is actually using the DOM API to find this el
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Board from "./Board.jsx";
+import Home from "./components/HomePage.jsx";
+import Rule from "./components/RulePage.jsx";
+import FreePlayBoard from "./components/FreePlayPage.jsx";
+import NormalPlayBoard from "./components/NormalPlayPage.jsx";
 import "./index.css";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducers from "./reducers/reducers";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const store = createStore(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Board />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/rule" element={<Rule />} />
+        <Route path="/freeplay" element={<FreePlayBoard />} />
+        <Route path="/normalplay" element={<NormalPlayBoard />} />
+      </Routes>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );
-
-//ReactDOM.render(<Board />, document.getElementById("root"));

@@ -1,5 +1,5 @@
 import React from "react";
-import './style/Board.css';
+import '../style/Board.css';
 import Square from './Square.jsx';
 import { useSelector } from 'react-redux';
 
