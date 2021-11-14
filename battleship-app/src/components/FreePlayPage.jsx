@@ -6,7 +6,7 @@ export default function FreePlayBoard() {
     return (
         <div>
             <ResetButton text="Reset game"/>
-            <Board />
+            <Board player="human"/>
         </div>
         
     );

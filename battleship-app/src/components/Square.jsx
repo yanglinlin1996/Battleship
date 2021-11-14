@@ -1,12 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '../style/Square.css';
 
 export default function Square(props) {
 
     // const {symbol, boardState, x, y} = props;
-    const symbol = props.symbol;
-    const boardState = useSelector((state) => state.attack);
+    const { symbol, boardState, x, y, player} = props;
     let bgColor = "defaultBg";
 
     if (symbol === 'X') {
@@ -17,16 +16,25 @@ export default function Square(props) {
 
     const dispatch = useDispatch();
 
+    function whichPlayer(player) {
+        if (player === "human") {
+            return "HUMAN_CLICK";
+        } else {
+            return "AI_CLICK";
+        }
+    }
+
     return (
         <div onClick={
             () => {dispatch({
-                type: 'boardClick',
-                x: props.x,
-                y: props.y,
-                picked: boardState[props.x][props.y]
+                type: whichPlayer(player),
+                x: x,
+                y: y,
+                picked: boardState[x][y]
             })}
         } id="square" class={bgColor}>
-            {symbol === "*" ? "" : symbol}
+            {symbol}
+            {/* {player === "human" ? (symbol === "*" ? "" : symbol) : (symbol)} */}
         </div>
     );
 }

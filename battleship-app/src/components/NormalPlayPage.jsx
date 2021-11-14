@@ -8,8 +8,8 @@ export default function NormalPlayBoard() {
         <div>
             <ResetButton text="Reset game"/>
             <Stack direction="row" spacing={10}>
-                <Board />
-                <Board />
+                <Board player="human"/>
+                <Board player="AI"/>
             </Stack>
             
         </div>
