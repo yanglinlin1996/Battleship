@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import humanReducer from "./HumanReducer";
-import AIReducer from './AIReducer'
-import checkWinnerReducer from "./checkWinnerReducer";
+import AIReducer from "./AIReducer";
+import clickReducer from "./clickReducer";
 
 export default combineReducers({
   human: humanReducer,
   AI: AIReducer,
-  winner: checkWinnerReducer,
+  totalClicks: clickReducer,
 });

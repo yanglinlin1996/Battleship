@@ -16,7 +16,7 @@ import ReactDOM from "react-dom";
 import Home from "./components/HomePage.jsx";
 import Rule from "./components/RulePage.jsx";
 import FreePlayBoard from "./components/FreePlayPage.jsx";
-import NormalPlayBoard from "./components/NormalPlayPage.jsx";
+import NormalPlayPage from "./components/NormalPlayPage.jsx";
 import "./index.css";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -32,7 +32,7 @@ ReactDOM.render(
         <Route path="/" element={<Home />} />
         <Route path="/rule" element={<Rule />} />
         <Route path="/freeplay" element={<FreePlayBoard />} />
-        <Route path="/normalplay" element={<NormalPlayBoard />} />
+        <Route path="/normalplay" element={<NormalPlayPage />} />
       </Routes>
     </Router>
   </Provider>,

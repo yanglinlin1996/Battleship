@@ -1,30 +1,38 @@
 import { GenerateRandomGameBoard } from "../utils/RandomShipGenerator.js";
 
 const defaultState = {
-    attackedCount: 0,
-    gameBoard: GenerateRandomGameBoard()
+  attackedCount: 0,
+  gameBoard: GenerateRandomGameBoard(),
+  winner: "",
 };
 
 export default function AIReducer(state = defaultState, action) {
-    let { attackedCount, gameBoard } = state;
-    if (action.type === "AI_CLICK") {
-        const value = gameBoard[action.x][action.y];
-        if (value === "*") {
-            gameBoard[action.x][action.y] = "X";
-        } else if (value === "") {
-            gameBoard[action.x][action.y] = "V";
-        }
-        // check winning condition
-        if (action.picked === "*") 
-            attackedCount++;
-        const newGameBoard = [...gameBoard]
-        return { attackedCount: attackedCount, gameBoard: newGameBoard } ;
+  let { attackedCount, gameBoard, winner } = state;
+  if (winner) return state;
+  if (action.type === "AI_CLICK" && action.isTurn) {
+    const value = gameBoard[action.x][action.y];
+    if (value === "*") {
+      gameBoard[action.x][action.y] = "X";
+    } else if (value === "") {
+      gameBoard[action.x][action.y] = "V";
     }
-
-    if (action.type === "RESET") {
-        const resetGameBoard = GenerateRandomGameBoard();
-        return { attackedCount: attackedCount, gameBoard: resetGameBoard };
+    // check winning condition
+    if (action.picked === "*") attackedCount++;
+    const newGameBoard = [...gameBoard];
+    if (attackedCount === 17) {
+      winner = "AI";
     }
+    return {
+      attackedCount: attackedCount,
+      gameBoard: newGameBoard,
+      winner: winner,
+    };
+  }
 
-    return state;
+  if (action.type === "RESET") {
+    const resetGameBoard = GenerateRandomGameBoard();
+    return { attackedCount: attackedCount, gameBoard: resetGameBoard };
+  }
+
+  return state;
 }

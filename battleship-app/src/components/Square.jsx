@@ -4,8 +4,7 @@ import '../style/Square.css';
 
 export default function Square(props) {
 
-    // const {symbol, boardState, x, y} = props;
-    const { symbol, boardState, x, y, player} = props;
+    const { symbol, boardState, x, y, player, totalClicks } = props;
     let bgColor = "defaultBg";
 
     if (symbol === 'X') {
@@ -24,12 +23,21 @@ export default function Square(props) {
         }
     }
 
+    function checkTurn(player, totalClicks) {
+        if (player === 'human') {
+            return totalClicks % 2 === 0;
+        } else {
+            return totalClicks % 2 === 1;
+        }
+    }
+
     return (
         <div onClick={
             () => {dispatch({
                 type: whichPlayer(player),
                 x: x,
                 y: y,
+                isTurn: checkTurn(player, totalClicks),
                 picked: boardState[x][y]
             })}
         } id="square" class={bgColor}>
