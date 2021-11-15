@@ -7,10 +7,11 @@ export default function Board(props) {
 
     const { player } = props;
 
-    const state = useSelector((state) => state[player]);
-    const boardState = state.gameBoard;
-    const winner = state.winner;
-    const totalClicks = useSelector((state) => state.totalClicks);
+    const boardState = useSelector((state) => state[player]);
+
+    const clickState = useSelector((state) => state.totalClicks);
+    const totalClicks = clickState.totalClicks;
+    const winner = clickState.winner;
 
     const boardComponent = [];
 
@@ -21,7 +22,7 @@ export default function Board(props) {
     for (let i = 0; i < boardState.length; i++) {
         let row = boardState[i];
         for (let j = 0; j < row.length; j++) {
-            boardComponent.push(<Square symbol = {boardState[i][j]} boardState = {boardState} x = {i} y = {j} player = {player} totalClicks={totalClicks}/>);
+            boardComponent.push(<Square symbol = {boardState[i][j]} boardState = {boardState} x = {i} y = {j} player = {player} totalClicks={totalClicks} winner={winner}/>);
         }
     }
 

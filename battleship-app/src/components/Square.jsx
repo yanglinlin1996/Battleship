@@ -4,7 +4,7 @@ import '../style/Square.css';
 
 export default function Square(props) {
 
-    const { symbol, boardState, x, y, player, totalClicks } = props;
+    const { symbol, boardState, x, y, player, totalClicks, winner } = props;
     let bgColor = "defaultBg";
 
     if (symbol === 'X') {
@@ -23,7 +23,8 @@ export default function Square(props) {
         }
     }
 
-    function checkTurn(player, totalClicks) {
+    function checkTurn(player, totalClicks, winner) {
+        if (winner) return false;
         if (player === 'human') {
             return totalClicks % 2 === 0;
         } else {
@@ -37,7 +38,7 @@ export default function Square(props) {
                 type: whichPlayer(player),
                 x: x,
                 y: y,
-                isTurn: checkTurn(player, totalClicks),
+                isTurn: checkTurn(player, totalClicks, winner),
                 picked: boardState[x][y]
             })}
         } id="square" class={bgColor}>

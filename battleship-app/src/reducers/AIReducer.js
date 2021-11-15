@@ -1,14 +1,8 @@
 import { GenerateRandomGameBoard } from "../utils/RandomShipGenerator.js";
 
-const defaultState = {
-  attackedCount: 0,
-  gameBoard: GenerateRandomGameBoard(),
-  winner: "",
-};
+const defaultBoard = GenerateRandomGameBoard();
 
-export default function AIReducer(state = defaultState, action) {
-  let { attackedCount, gameBoard, winner } = state;
-  if (winner) return state;
+export default function AIReducer(gameBoard = defaultBoard, action) {
   if (action.type === "AI_CLICK" && action.isTurn) {
     const value = gameBoard[action.x][action.y];
     if (value === "*") {
@@ -16,23 +10,10 @@ export default function AIReducer(state = defaultState, action) {
     } else if (value === "") {
       gameBoard[action.x][action.y] = "V";
     }
-    // check winning condition
-    if (action.picked === "*") attackedCount++;
-    const newGameBoard = [...gameBoard];
-    if (attackedCount === 17) {
-      winner = "AI";
-    }
-    return {
-      attackedCount: attackedCount,
-      gameBoard: newGameBoard,
-      winner: winner,
-    };
+    return [...gameBoard];
   }
 
-  if (action.type === "RESET") {
-    const resetGameBoard = GenerateRandomGameBoard();
-    return { attackedCount: attackedCount, gameBoard: resetGameBoard };
-  }
+  if (action.type === "RESET") return GenerateRandomGameBoard();
 
-  return state;
+  return gameBoard;
 }
