@@ -1,14 +1,21 @@
-import { GenerateRandomGameBoard } from "../utils/RandomShipGenerator.js";
+import {
+  GenerateRandomGameBoard,
+  generateAIAttackPos,
+} from "../utils/RandomShipGenerator.js";
 
 const defaultBoard = GenerateRandomGameBoard();
 
 export default function AIReducer(gameBoard = defaultBoard, action) {
   if (action.type === "AI_CLICK" && action.isTurn) {
-    const value = gameBoard[action.x][action.y];
+    let [x, y] = generateAIAttackPos();
+    while (action.boardState[x][y] === "X" && action.boardState[x][y] === "V") {
+      [x, y] = generateAIAttackPos();
+    }
+    const value = gameBoard[x][y];
     if (value === "*") {
-      gameBoard[action.x][action.y] = "X";
+      gameBoard[x][y] = "X";
     } else if (value === "") {
-      gameBoard[action.x][action.y] = "V";
+      gameBoard[x][y] = "V";
     }
     return [...gameBoard];
   }

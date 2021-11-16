@@ -14,8 +14,8 @@ export default function NormalPlayPage() {
             <ResetButton text="Reset game"/>
             <div>{winner ? `${winner} wins!` : "" }</div>
             <Stack direction="row" spacing={10}>
-                <Board player="human" checkWinner={checkWinner}/>
-                <Board player="AI" checkWinner={checkWinner}/>
+                <Board playerBoard="humanBoard" checkWinner={checkWinner}/>
+                <Board playerBoard="AIBoard" checkWinner={checkWinner}/>
             </Stack>
         </div>
     )

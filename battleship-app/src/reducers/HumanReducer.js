@@ -1,6 +1,10 @@
 import { GenerateRandomGameBoard } from "../utils/RandomShipGenerator.js";
 
-const defaultBoard = GenerateRandomGameBoard();
+// const defaultBoard = GenerateRandomGameBoard();
+const defaultBoard = {
+  curPlayer: "human",
+  gameBoard: GenerateRandomGameBoard(),
+};
 
 export default function humanReducer(gameBoard = defaultBoard, action) {
   if (action.type === "HUMAN_CLICK" && action.isTurn) {
