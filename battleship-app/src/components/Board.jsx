@@ -8,18 +8,11 @@ export default function Board(props) {
     const playerBoard = props.playerBoard;
 
     const gameState = useSelector((state) => state.gameReducer);
-    // const countState = useSelector((state) => state.countReducer);
-    console.log("Game state: " + gameState.gameBoard);
-    console.log("Player board is: " + playerBoard);
     const boardState = gameState.gameBoard[playerBoard];
     const playerTurn = gameState.playerTurn;
     const winner = gameState.winner;
 
     const boardComponent = [];
-
-    console.log("Current Board State is: " + boardState);
-
-    
 
     for (let i = 0; i < boardState.length; i++) {
         let row = boardState[i];
@@ -36,9 +29,8 @@ export default function Board(props) {
 
     return (
         <div id="board" getWinner={getWinner(winner)} >
-        {/* <div id="board" > */}
             {boardComponent}
-            {/* Human:{clicksState.humanAttacked} AI:{clicksState.AIAttacked} */}
+            {/* Human:{gameState.humanAttacked} AI:{gameState.AIAttacked} */}
         </div> 
     );
 }

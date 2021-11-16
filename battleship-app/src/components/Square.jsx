@@ -23,7 +23,6 @@ export default function Square(props) {
                     x: x,
                     y: y,
                     playerBoard: playerBoard,
-                    // boardState: boardState,
                     playerTurn: playerTurn
                 });
                 setTimeout(() => {
@@ -33,7 +32,6 @@ export default function Square(props) {
                         x: x,
                         y: y,
                         playerBoard: playerBoard,
-                        // boardState: boardState,
                         playerTurn: playerTurn
                     })
                 }, 1);}

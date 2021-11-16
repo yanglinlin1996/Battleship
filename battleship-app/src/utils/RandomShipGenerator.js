@@ -24,7 +24,6 @@ function generateShipLocations() {
         ...shipLocations,
       ]);
     }
-    // shipLocations.forEach(pos => shipLocationSet.add(pos));
     for (let pos of shipLocations) {
       console.log("existed?: ", shipLocationSet.has(pos));
       shipLocationSet.add(pos);
@@ -49,10 +48,8 @@ function randomLocation(shipSize) {
   for (let i = 0; i < shipSize; i++) {
     let curPos;
     if (direction === 0) {
-      // curPos = [index2, index1 + i];
       curPos = index2 + "," + (index1 + i);
     } else {
-      // curPos = [index1 + i, index2];
       curPos = index1 + i + "," + index2;
     }
     currShiplocations.push(curPos);
@@ -61,7 +58,6 @@ function randomLocation(shipSize) {
 }
 
 function checkOccupied(shipLocationSet, shipLocations) {
-  // let shipLocationOccupied = false;
   for (let pos of shipLocations) {
     if (shipLocationSet.has(pos)) {
       return true;
