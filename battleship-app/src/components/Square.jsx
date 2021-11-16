@@ -19,6 +19,7 @@ export default function Square(props) {
             () => {
                 dispatch({
                     type: "HUMAN_CLICK",
+                    symbol: symbol,
                     x: x,
                     y: y,
                     playerBoard: playerBoard,
@@ -28,13 +29,14 @@ export default function Square(props) {
                 setTimeout(() => {
                     dispatch({
                         type: "AI_CLICK",
+                        symbol: symbol,
                         x: x,
                         y: y,
                         playerBoard: playerBoard,
                         // boardState: boardState,
                         playerTurn: playerTurn
                     })
-                }, 1000);}
+                }, 1);}
         } id="square" class={bgColor}>
             {symbol}
             {/* {player === "human" ? (symbol === "*" ? "" : symbol) : (symbol)} */}

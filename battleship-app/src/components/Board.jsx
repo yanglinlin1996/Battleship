@@ -13,7 +13,7 @@ export default function Board(props) {
     console.log("Player board is: " + playerBoard);
     const boardState = gameState.gameBoard[playerBoard];
     const playerTurn = gameState.playerTurn;
-    // const winner = countState.winner;
+    const winner = gameState.winner;
 
     const boardComponent = [];
 
@@ -35,8 +35,8 @@ export default function Board(props) {
     }
 
     return (
-        // <div id="board" getWinner={getWinner(winner)} >
-        <div id="board" >
+        <div id="board" getWinner={getWinner(winner)} >
+        {/* <div id="board" > */}
             {boardComponent}
             {/* Human:{clicksState.humanAttacked} AI:{clicksState.AIAttacked} */}
         </div> 
