@@ -4,7 +4,7 @@ import '../style/Square.css';
 
 export default function Square(props) {
 
-    const { symbol, boardState, x, y, playerTurn } = props;
+    const { symbol, playerBoard, playerTurn, x, y } = props;
     let bgColor = "defaultBg";
 
     if (symbol === 'X') {
@@ -21,7 +21,8 @@ export default function Square(props) {
                     type: "HUMAN_CLICK",
                     x: x,
                     y: y,
-                    boardState: boardState,
+                    playerBoard: playerBoard,
+                    // boardState: boardState,
                     playerTurn: playerTurn
                 });
                 setTimeout(() => {
@@ -29,10 +30,11 @@ export default function Square(props) {
                         type: "AI_CLICK",
                         x: x,
                         y: y,
-                        boardState: boardState,
+                        playerBoard: playerBoard,
+                        // boardState: boardState,
                         playerTurn: playerTurn
                     })
-                }, 3000);}
+                }, 1000);}
         } id="square" class={bgColor}>
             {symbol}
             {/* {player === "human" ? (symbol === "*" ? "" : symbol) : (symbol)} */}

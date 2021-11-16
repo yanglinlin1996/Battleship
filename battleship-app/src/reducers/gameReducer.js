@@ -22,13 +22,12 @@ function AIClick(AIBoard) {
   } else if (value === "") {
     AIBoard[x][y] = "V";
   }
-  //   return [...AIBoard];
 }
 
 export default function gameReducer(state = defaultState, action) {
   let { gameBoard, playerTurn } = state;
   // human's turn
-  if (action.type === "HUMAN_CLICK" && action.playerTurn === true) {
+  if (action.type === "HUMAN_CLICK" && action.playerBoard && action.playerTurn) {
     const value = gameBoard["humanBoard"][action.x][action.y];
     if (value === "*") {
       gameBoard["humanBoard"][action.x][action.y] = "X";
@@ -37,9 +36,6 @@ export default function gameReducer(state = defaultState, action) {
     }
 
     playerTurn = false;
-
-    //setTimeout(AIClick(gameBoard.AIBoard), 3000);
-    //console.log("AIBoard: " + gameBoard.AIBoard);
 
     return {
       gameBoard: {
@@ -50,8 +46,8 @@ export default function gameReducer(state = defaultState, action) {
     };
   }
 
-  if (action.type === "AI_CLICK" && !playerTurn) {
-    AIClick(gameBoard.AIBoard);
+  if (action.type === "AI_CLICK" && action.playerBoard && !playerTurn) {
+    AIClick(gameBoard["AIBoard"])
     playerTurn = true;
     return {
       gameBoard: {

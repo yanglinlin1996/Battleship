@@ -7,18 +7,13 @@ export default function Board(props) {
 
     const playerBoard = props.playerBoard;
 
-    //const boardState = useSelector((state) => state[player]);
-
-    // const clickState = useSelector((state) => state.totalClicks);
-    // const totalClicks = clickState.totalClicks;
-    // const winner = clickState.winner;
     const gameState = useSelector((state) => state.gameReducer);
-    const countState = useSelector((state) => state.countReducer);
+    // const countState = useSelector((state) => state.countReducer);
     console.log("Game state: " + gameState.gameBoard);
     console.log("Player board is: " + playerBoard);
     const boardState = gameState.gameBoard[playerBoard];
     const playerTurn = gameState.playerTurn;
-    const winner = countState.winner;
+    // const winner = countState.winner;
 
     const boardComponent = [];
 
@@ -29,7 +24,7 @@ export default function Board(props) {
     for (let i = 0; i < boardState.length; i++) {
         let row = boardState[i];
         for (let j = 0; j < row.length; j++) {
-            boardComponent.push(<Square symbol = {boardState[i][j]} boardState = {boardState} x = {i} y = {j} playerTurn = {playerTurn}/>);
+            boardComponent.push(<Square symbol = {boardState[i][j]} playerBoard={playerBoard === "humanBoard"} x = {i} y = {j} playerTurn = {playerTurn}/>);
         }
     }
 
@@ -40,9 +35,10 @@ export default function Board(props) {
     }
 
     return (
-        <div id="board" getWinner={getWinner(winner)} >
+        // <div id="board" getWinner={getWinner(winner)} >
+        <div id="board" >
             {boardComponent}
-            {/* Human:{clickState.humanAttacked} AI:{clickState.AIAttacked} Total:{totalClicks} */}
+            {/* Human:{clicksState.humanAttacked} AI:{clicksState.AIAttacked} */}
         </div> 
     );
 }

@@ -8,5 +8,5 @@ export default combineReducers({
   // human: humanReducer,
   // AI: AIReducer,
   gameReducer: gameReducer,
-  countReducer: countReducer,
+  // countReducer: countReducer,
 });
