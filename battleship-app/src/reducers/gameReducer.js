@@ -4,41 +4,62 @@ import {
 } from "../utils/RandomShipGenerator.js";
 
 const defaultState = {
-  curPlayer: "human",
   gameBoard: {
     humanBoard: GenerateRandomGameBoard(),
     AIBoard: GenerateRandomGameBoard(),
   },
+  playerTurn: true,
 };
 
+function AIClick(AIBoard) {
+  let [x, y] = generateAIAttackPos();
+  while (AIBoard[x][y] === "X" || AIBoard[x][y] === "V") {
+    [x, y] = generateAIAttackPos();
+  }
+  const value = AIBoard[x][y];
+  if (value === "*") {
+    AIBoard[x][y] = "X";
+  } else if (value === "") {
+    AIBoard[x][y] = "V";
+  }
+  //   return [...AIBoard];
+}
+
 export default function gameReducer(state = defaultState, action) {
-  let { curPlayer, gameBoard } = state;
+  let { gameBoard, playerTurn } = state;
   // human's turn
-  if (action.type === "BOARD_CLICK" && action.curPlayer === "human") {
+  if (action.type === "HUMAN_CLICK" && action.playerTurn === true) {
     const value = gameBoard["humanBoard"][action.x][action.y];
     if (value === "*") {
       gameBoard["humanBoard"][action.x][action.y] = "X";
     } else if (value === "") {
       gameBoard["humanBoard"][action.x][action.y] = "V";
     }
-    curPlayer = "AI";
-    return { curPlayer: curPlayer, gameBoard: { ...gameBoard } };
+
+    playerTurn = false;
+
+    //setTimeout(AIClick(gameBoard.AIBoard), 3000);
+    //console.log("AIBoard: " + gameBoard.AIBoard);
+
+    return {
+      gameBoard: {
+        humanBoard: [...gameBoard.humanBoard],
+        AIBoard: [...gameBoard.AIBoard],
+      },
+      playerTurn: playerTurn,
+    };
   }
 
-  // AI's turn
-  if (action.type === "BOARD_CLICK" && action.curPlayer === "AI") {
-    let [x, y] = generateAIAttackPos();
-    while (action.boardState[x][y] === "X" && action.boardState[x][y] === "V") {
-      [x, y] = generateAIAttackPos();
-    }
-    const value = gameBoard["AIBoard"][x][y];
-    if (value === "*") {
-      gameBoard["AIBoard"][x][y] = "X";
-    } else if (value === "") {
-      gameBoard["AIBoard"][x][y] = "V";
-    }
-    curPlayer = "human";
-    return { curPlayer: curPlayer, gameBoard: { ...gameBoard } };
+  if (action.type === "AI_CLICK" && !playerTurn) {
+    AIClick(gameBoard.AIBoard);
+    playerTurn = true;
+    return {
+      gameBoard: {
+        humanBoard: [...gameBoard.humanBoard],
+        AIBoard: [...gameBoard.AIBoard],
+      },
+      playerTurn: playerTurn,
+    };
   }
 
   if (action.type === "RESET") return defaultState;

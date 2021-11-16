@@ -17,7 +17,7 @@ export default function Board(props) {
     console.log("Game state: " + gameState.gameBoard);
     console.log("Player board is: " + playerBoard);
     const boardState = gameState.gameBoard[playerBoard];
-    const curPlayer = gameState.curPlayer;
+    const playerTurn = gameState.playerTurn;
     const winner = countState.winner;
 
     const boardComponent = [];
@@ -29,7 +29,7 @@ export default function Board(props) {
     for (let i = 0; i < boardState.length; i++) {
         let row = boardState[i];
         for (let j = 0; j < row.length; j++) {
-            boardComponent.push(<Square symbol = {boardState[i][j]} boardState = {boardState} x = {i} y = {j} player = {curPlayer} winner={winner}/>);
+            boardComponent.push(<Square symbol = {boardState[i][j]} boardState = {boardState} x = {i} y = {j} playerTurn = {playerTurn}/>);
         }
     }
 
