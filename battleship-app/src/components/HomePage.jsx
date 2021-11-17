@@ -7,6 +7,12 @@ import '../style/Home.css';
 export default function Home() {
     return (
         <div className="homeContainer">
+            <div class="navbar">
+                <Button variant="contained" className="navbarButton" href="/" color="inherit">Home</Button>
+                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit">Free Play</Button>
+                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit">Normal Play</Button>
+                <Button variant="contained" className="navbarButton" href="/rule" color="inherit">Play Rule</Button>
+            </div>
             <h1>Welcome to Battleship Game</h1>
             <div className="modeContainer">
                 <h2>Please select game mode</h2>

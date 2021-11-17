@@ -8,6 +8,13 @@
   height: 18vh;
 }
 
+.navbarButton {
+  width: 18vh;
+  height: 6vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
 .homeContainer {
   position: relative;
   display: flex;

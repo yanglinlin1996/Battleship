@@ -6,3 +6,7 @@ h2 {
   font-size: 5vh;
   color: rgb(211, 174, 54);
 }
+
+.content {
+  margin-top: 12vh;
+}
