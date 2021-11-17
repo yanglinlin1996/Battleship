@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import '../style/Square.css';
+import { ACTION } from '../utils/Constants';
 
 export default function Square(props) {
 
-    const { symbol, playerBoard, playerTurn, x, y } = props;
+    const { symbol, isPlayerBoard, playerTurn, x, y } = props;
     let bgColor = "defaultBg";
 
     if (symbol === 'X') {
@@ -18,20 +19,20 @@ export default function Square(props) {
     return (<div onClick={
             () => {
                 dispatch({
-                    type: "HUMAN_CLICK",
+                    type: ACTION.PLAYER_CLICK,
                     symbol: symbol,
                     x: x,
                     y: y,
-                    playerBoard: playerBoard,
+                    isPlayerBoard: isPlayerBoard,
                     playerTurn: playerTurn
                 });
                 setTimeout(() => {
                     dispatch({
-                        type: "AI_CLICK",
+                        type: ACTION.AI_CLICK,
                         symbol: symbol,
                         x: x,
                         y: y,
-                        playerBoard: playerBoard,
+                        isPlayerBoard: isPlayerBoard,
                         playerTurn: playerTurn
                     })
                 }, 1);}

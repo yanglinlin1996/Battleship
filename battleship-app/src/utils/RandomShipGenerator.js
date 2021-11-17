@@ -1,20 +1,31 @@
+import "./Constants.js";
+import {
+  BOARD_LENGTH,
+  ROW,
+  COLUMN,
+  SHIP_SYMBOL,
+  SHIPS_SIZE,
+  BOARD_DIRECTIONS,
+} from "./Constants.js";
+
 export const GenerateRandomGameBoard = () => {
-  const emptyBoard = new Array(10).fill("").map(() => new Array(10).fill(""));
+  const emptyBoard = new Array(BOARD_LENGTH)
+    .fill("")
+    .map(() => new Array(BOARD_LENGTH).fill(""));
   console.log("Generate an empty board: " + emptyBoard);
   const shipLocationSet = generateShipLocations();
   for (let pos of shipLocationSet) {
     const idxs = pos.split(",");
-    const x = parseInt(idxs[0]);
-    const y = parseInt(idxs[1]);
-    emptyBoard[x][y] = "*";
+    const x = parseInt(idxs[ROW]);
+    const y = parseInt(idxs[COLUMN]);
+    emptyBoard[x][y] = SHIP_SYMBOL;
   }
   return [...emptyBoard];
 };
 
 function generateShipLocations() {
-  const shipsSize = [5, 4, 3, 3, 2];
   const shipLocationSet = new Set();
-  for (let size of shipsSize) {
+  for (let size of SHIPS_SIZE) {
     let shipLocations = randomLocation(size);
     let shipLocationsOccupied = checkOccupied(shipLocationSet, shipLocations);
     while (shipLocationsOccupied) {
@@ -25,29 +36,22 @@ function generateShipLocations() {
       ]);
     }
     for (let pos of shipLocations) {
-      console.log("existed?: ", shipLocationSet.has(pos));
       shipLocationSet.add(pos);
     }
-    console.log("shipsize: " + size);
-    console.log("ship locations: ", shipLocations);
   }
-  console.log("Generated Random ship locations: " + shipLocationSet);
   return new Set(shipLocationSet);
 }
 
 function randomLocation(shipSize) {
   // 0: horizontal; 1: vertical
-  const direction = Math.floor(Math.random() * 2); // 0 or 1
+  const direction = Math.floor(Math.random() * BOARD_DIRECTIONS); // 0 or 1
   // start index of x or y regards of direction
-  const index1 = Math.floor(Math.random() * (10 - shipSize));
-  const index2 = Math.floor(Math.random() * 10);
-  console.log(
-    "direction: " + direction + " index1: " + index1 + " index2: " + index2
-  );
+  const index1 = Math.floor(Math.random() * (BOARD_LENGTH - shipSize));
+  const index2 = Math.floor(Math.random() * BOARD_LENGTH);
   const currShiplocations = [];
   for (let i = 0; i < shipSize; i++) {
     let curPos;
-    if (direction === 0) {
+    if (direction === ROW) {
       curPos = index2 + "," + (index1 + i);
     } else {
       curPos = index1 + i + "," + index2;
@@ -67,5 +71,8 @@ function checkOccupied(shipLocationSet, shipLocations) {
 }
 
 export function generateAIAttackPos() {
-  return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+  return [
+    Math.floor(Math.random() * BOARD_LENGTH),
+    Math.floor(Math.random() * BOARD_LENGTH),
+  ];
 }

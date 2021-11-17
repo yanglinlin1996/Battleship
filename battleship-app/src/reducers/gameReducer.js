@@ -1,4 +1,14 @@
 import {
+  ACTION,
+  ATTACK_SYMBOL,
+  EMPTY_SYMBOL,
+  INITIAL_ATTACK_COUNT,
+  MISSED_SYMBOL,
+  PLAYER,
+  SHIP_SYMBOL,
+  WIN_COUNT,
+} from "../utils/Constants.js";
+import {
   GenerateRandomGameBoard,
   generateAIAttackPos,
 } from "../utils/RandomShipGenerator.js";
@@ -6,39 +16,39 @@ import {
 const generateDefaultState = () => {
   return {
     gameBoard: {
-      humanBoard: GenerateRandomGameBoard(),
+      playerBoard: GenerateRandomGameBoard(),
       AIBoard: GenerateRandomGameBoard(),
     },
     playerTurn: true,
-    humanAttacked: 0,
-    AIAttacked: 0,
+    humanAttacked: INITIAL_ATTACK_COUNT,
+    AIAttacked: INITIAL_ATTACK_COUNT,
     winner: "",
     isGameOver: false,
   };
 };
 
-function computeFire(playerBoard, playerAttacked, player, x, y) {
+function computeFire(clickBoard, playerAttacked, player, x, y) {
   let [attackX, attackY] = [x, y];
-  if (player === "computer") {
+  if (player === PLAYER.AI) {
     [attackX, attackY] = generateAIAttackPos();
     while (
-      playerBoard[attackX][attackY] === "X" ||
-      playerBoard[attackX][attackY] === "V"
+      clickBoard[attackX][attackY] === ATTACK_SYMBOL ||
+      clickBoard[attackX][attackY] === MISSED_SYMBOL
     ) {
       [attackX, attackY] = generateAIAttackPos();
     }
   }
-  return fireShip(playerBoard, playerAttacked, attackX, attackY);
+  return fireShip(clickBoard, playerAttacked, attackX, attackY);
 }
 
-function fireShip(playerBoard, playerAttacked, x, y) {
-  const value = playerBoard[x][y];
+function fireShip(clickBoard, playerAttacked, x, y) {
+  const value = clickBoard[x][y];
   let playerAttackCount = playerAttacked;
-  if (value === "*") {
-    playerBoard[x][y] = "X";
+  if (value === SHIP_SYMBOL) {
+    clickBoard[x][y] = ATTACK_SYMBOL;
     playerAttackCount++;
-  } else if (value === "") {
-    playerBoard[x][y] = "V";
+  } else if (value === EMPTY_SYMBOL) {
+    clickBoard[x][y] = MISSED_SYMBOL;
   }
   return playerAttackCount;
 }
@@ -47,16 +57,16 @@ const checkValidTurn = (
   isGameOver,
   player,
   actionType,
-  playerBoard,
+  isPlayerBoard,
   playerTurn
 ) => {
-  if (isGameOver || !playerBoard || !playerTurn) return false;
-  else if (player === "human") return actionType === "HUMAN_CLICK";
-  else if (player === "AI") return actionType === "AI_CLICK";
+  if (isGameOver || !isPlayerBoard || !playerTurn) return false;
+  else if (player === PLAYER.PLAYER) return actionType === ACTION.PLAYER_CLICK;
+  else if (player === PLAYER.AI) return actionType === ACTION.AI_CLICK;
 };
 
 const isWinning = (player, attackedCount) => {
-  if (attackedCount === 17) {
+  if (attackedCount === WIN_COUNT) {
     return { winner: player, isGameOver: true };
   }
   return { winner: "", isGameOver: false };
@@ -72,29 +82,29 @@ export default function gameReducer(state, action) {
   if (
     checkValidTurn(
       isGameOver,
-      "human",
+      PLAYER.PLAYER,
       action.type,
-      action.playerBoard,
+      action.isPlayerBoard,
       action.playerTurn
     )
   ) {
     if (
-      gameBoard["humanBoard"][action.x][action.y] !== "X" &&
-      gameBoard["humanBoard"][action.x][action.y] !== "V"
+      gameBoard.playerBoard[action.x][action.y] !== ATTACK_SYMBOL &&
+      gameBoard.playerBoard[action.x][action.y] !== MISSED_SYMBOL
     ) {
       playerTurn = false;
     }
     humanAttacked = computeFire(
-      gameBoard["humanBoard"],
+      gameBoard.playerBoard,
       humanAttacked,
-      "human",
+      PLAYER.PLAYER,
       action.x,
       action.y
     );
-    const { winner, isGameOver } = isWinning("YOU", humanAttacked);
+    const { winner, isGameOver } = isWinning(PLAYER.PLAYER, humanAttacked);
 
     gameBoard = {
-      humanBoard: [...gameBoard.humanBoard],
+      playerBoard: [...gameBoard.playerBoard],
       AIBoard: [...gameBoard.AIBoard],
     };
     return {
@@ -110,25 +120,25 @@ export default function gameReducer(state, action) {
   if (
     checkValidTurn(
       isGameOver,
-      "AI",
+      PLAYER.AI,
       action.type,
-      action.playerBoard,
+      action.isPlayerBoard,
       !playerTurn
     )
   ) {
     console.log("AI is attacking....");
     AIAttacked = computeFire(
-      gameBoard["AIBoard"],
+      gameBoard.AIBoard,
       AIAttacked,
-      "computer",
+      PLAYER.AI,
       action.x,
       action.y
     );
-    const { winner, isGameOver } = isWinning("AI", AIAttacked);
+    const { winner, isGameOver } = isWinning(PLAYER.AI, AIAttacked);
     playerTurn = true;
 
     gameBoard = {
-      humanBoard: [...gameBoard.humanBoard],
+      playerBoard: [...gameBoard.playerBoard],
       AIBoard: [...gameBoard.AIBoard],
     };
 
