@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 0.2vh solid black;
 }
 
 .defaultBg {
@@ -17,4 +17,8 @@
 .redBg {
   background-color: lightpink;
   color: palevioletred;
+}
+
+#square:hover {
+  transform: scale(1.5);
 }

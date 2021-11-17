@@ -10,12 +10,17 @@ export default function NormalPlayPage() {
     const winner = useSelector((state) => state.gameReducer).winner;
     return (
         <div>
-            <ResetButton text="Reset game"/>
-            <div>{winner ? `Game over! ${winner} Won!` : "" }</div>
-            <Stack direction="row" spacing={10}>
-                <Board playerBoard={PLAYER_BOARD} />
-                <Board playerBoard={AI_BOARD} />
-            </Stack>
+            <div class="buttonContainer">
+                <ResetButton text="Reset game"/>
+            </div>
+            <div class={winner? "winnerContainer" : null}>{winner ? `Game over! ${winner} Won!` : "" }</div>
+            <div class="boardContainer">
+                <Stack direction="row" spacing={10}>
+                    <Board playerBoard={PLAYER_BOARD} />
+                    <Board playerBoard={AI_BOARD} />
+                </Stack>
+            </div>
+            
         </div>
     )
 }

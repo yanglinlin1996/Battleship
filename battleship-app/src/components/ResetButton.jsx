@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
+import '../style/ResetButton.css';
 
 
 export default function ResetButton(props) {
@@ -13,7 +14,7 @@ export default function ResetButton(props) {
             () => dispatch({
                 type: "RESET",
             })
-        } variant="contained" className="resetButton" color="secondary" size="small">
+        } variant="contained" color="secondary" size="medium">
             {text}
         </Button>
     );

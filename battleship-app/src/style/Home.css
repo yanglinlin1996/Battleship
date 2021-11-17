@@ -1,9 +1,18 @@
 .modeContainer {
-  margin-top: 150px;
-  margin-bottom: 100px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .modeButton {
-  width: 150px;
-  height: 150px;
+  width: 20vh;
+  height: 20vh;
+}
+
+.homeContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  column-gap: 10vh;
+  align-items: center;
+  justify-content: center;
 }
