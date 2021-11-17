@@ -10,12 +10,15 @@ export default function Home() {
             <h1>Welcome to Battleship Game</h1>
             <div className="modeContainer">
                 <h2>Please select game mode</h2>
-                <Stack direction="row" spacing={4}>
-                    <Button variant="contained" className="modeButton" href="/freeplay">Free Play</Button>
-                    <Button variant="contained" className="modeButton" href="/normalplay">Normal Play</Button>
-                </Stack>
+                <div class="buttonContainer">
+                    <Stack direction="row" spacing={10}>
+                        <Button variant="contained" className="modeButton" href="/freeplay">Free Play</Button>
+                        <Button variant="contained" className="modeButton" href="/normalplay">Normal Play</Button>
+                    </Stack>
+                </div>
+                
             </div>
-            <Link href="/rule">How to Play Battleship</Link>
+            <Link href="/rule" fontSize="large">How to Play Battleship</Link>
         </div>
         
     )

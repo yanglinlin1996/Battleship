@@ -6,6 +6,7 @@ export const PLAYER = {
 export const ACTION = {
   PLAYER_CLICK: "PLAYER_CLICK",
   AI_CLICK: "AI_CLICK",
+  RESET: "RESET",
 };
 
 export const PLAYER_BOARD = "playerBoard";

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import '../style/Square.css';
-import { ACTION } from '../utils/Constants';
+import { ACTION, ATTACK_SYMBOL, MISSED_SYMBOL } from '../utils/Constants';
 
 export default function Square(props) {
 
     const { symbol, isPlayerBoard, playerTurn, x, y } = props;
     let bgColor = "defaultBg";
 
-    if (symbol === 'X') {
+    if (symbol === ATTACK_SYMBOL) {
         bgColor = "redBg";
-    } else if (symbol === "V") {
+    } else if (symbol === MISSED_SYMBOL) {
         bgColor = "greenBg";
     } 
 

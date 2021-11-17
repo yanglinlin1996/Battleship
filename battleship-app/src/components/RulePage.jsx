@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/Rule.css';
 
 export default function Rule() {
     return (

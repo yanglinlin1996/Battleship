@@ -4,8 +4,8 @@
 }
 
 .modeButton {
-  width: 20vh;
-  height: 20vh;
+  width: 18vh;
+  height: 18vh;
 }
 
 .homeContainer {
@@ -15,4 +15,21 @@
   column-gap: 10vh;
   align-items: center;
   justify-content: center;
+}
+
+.buttonContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 10vh;
+  color: rgb(237, 240, 57);
+}
+
+h2 {
+  font-size: 5vh;
+  color: rgb(211, 174, 54);
 }
