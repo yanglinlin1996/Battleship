@@ -33,7 +33,7 @@ export default function Square(props) {
                         x: x,
                         y: y,
                         isPlayerBoard: isPlayerBoard,
-                        playerTurn: playerTurn
+                        // playerTurn: playerTurn
                     })
                 }, 1);}
         } id="square" class={bgColor}>

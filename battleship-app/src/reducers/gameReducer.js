@@ -76,7 +76,7 @@ export default function gameReducer(state, action) {
   if (state === undefined) {
     return generateDefaultState();
   }
-  let { gameBoard, playerTurn, humanAttacked, AIAttacked, winner, isGameOver } =
+  let { gameBoard, playerTurn, humanAttacked, AIAttacked, isGameOver } =
     state;
   // human's turn
   if (
