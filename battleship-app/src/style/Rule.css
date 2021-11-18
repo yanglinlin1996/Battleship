@@ -13,3 +13,8 @@ h2 {
 .content {
   margin-top: 12vh;
 }
+
+span {
+  font-weight: bold;
+  font-style: italic;
+}

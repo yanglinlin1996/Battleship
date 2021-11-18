@@ -29,6 +29,16 @@ export default function Rule() {
             
                 <h2>Victory</h2>
                 <p>The player who successfully locates all their opponent’s ships first by hitting each square they occupy is the winner as all ships have been destroyed.</p>
+
+                <h2>About our website</h2>
+                <p>
+                    Our website provides two options of the battleship game:
+                    <ul>
+                        <li><span >Free Play Page:</span> Player plays alone on the enemy's board where the enemy ships are hiden. The enemy AI will not take any turns and their turn will be skipped.</li>
+                        <li><span>Normal Play Page:</span> Player competes with enemy AI. In each turn, player or AI will click one square, the one who finishes attacking all ship first wins. </li>
+                        <li><span>Reset button:</span> start a new game of Battleship where the locations of Carrier(1x5), Battleship(1x4), Cruiser(1x3), Submarine(1x3), and Destroyer(1x2) are newly and randomly generated after every click.</li>
+                    </ul>
+                </p>
             </div>
         </div>
     )
