@@ -23,3 +23,10 @@ export const ROW = 0;
 export const COLUMN = 1;
 export const BOARD_DIRECTIONS = 2;
 export const INITIAL_ATTACK_COUNT = 0;
+
+export const STYLE = {
+  fontSize: "2vh",
+  backgroundColor: "lavender",
+  color: "slateblue",
+  margin: "0.5vh",
+};

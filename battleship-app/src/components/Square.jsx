@@ -33,9 +33,8 @@ export default function Square(props) {
                         x: x,
                         y: y,
                         isPlayerBoard: isPlayerBoard,
-                        // playerTurn: playerTurn
                     })
-                }, 1);}
+                }, 1000);}
         } id="square" class={bgColor}>
             {isPlayerBoard ? (symbol === SHIP_SYMBOL ? "" : symbol) : (symbol)}
         </div>);

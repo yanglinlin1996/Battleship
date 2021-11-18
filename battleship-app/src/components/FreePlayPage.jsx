@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { PLAYER_BOARD } from '../utils/Constants.js';
+import { PLAYER_BOARD, STYLE } from '../utils/Constants.js';
 import Board from "./Board.jsx";
 import ResetButton from './ResetButton.jsx';
 import Button from '@mui/material/Button';
@@ -11,10 +11,10 @@ export default function FreePlayBoard() {
     return (
         <div>
             <div class="navbar">
-                <Button variant="contained" className="navbarButton" href="/" color="inherit" style={{ fontSize: '2vh' }}>Home</Button>
-                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit" style={{ fontSize: '2vh' }}>Free Play</Button>
-                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit" style={{ fontSize: '2vh' }}>Normal Play</Button>
-                <Button variant="contained" className="navbarButton" href="/rule" color="inherit" style={{ fontSize: '2vh' }}>Play Rule</Button>
+            <Button variant="contained" className="navbarButton" href="/" style={STYLE}>Home</Button>
+                <Button variant="contained" className="navbarButton" href="/freeplay" style={STYLE}>Free Play</Button>
+                <Button variant="contained" className="navbarButton" href="/normalplay" style={STYLE}>Normal Play</Button>
+                <Button variant="contained" className="navbarButton" href="/rule" style={STYLE}>Play Rule</Button>
             </div>
             <div class="buttonContainer">
                 <ResetButton text="Reset game"/>

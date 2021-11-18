@@ -25,7 +25,6 @@ export default function Board(props) {
     return (
         <div id="board" >
             {boardComponent}
-            {/* Human:{gameState.humanAttacked} AI:{gameState.AIAttacked} */}
         </div> 
     );
 }

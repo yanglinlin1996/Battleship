@@ -1,15 +1,16 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import '../style/Rule.css';
+import { STYLE } from '../utils/Constants.js';
 
 export default function Rule() {
     return (
         <div>
             <div class="navbar">
-                <Button variant="contained" className="navbarButton" href="/" color="inherit" style={{ fontSize: '2vh' }}>Home</Button>
-                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit" style={{ fontSize: '2vh' }}>Free Play</Button>
-                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit" style={{ fontSize: '2vh' }}>Normal Play</Button>
-                <Button variant="contained" className="navbarButton" href="/rule" color="inherit" style={{ fontSize: '2vh' }}>Play Rule</Button>
+                <Button variant="contained" className="navbarButton" href="/" style={STYLE}>Home</Button>
+                <Button variant="contained" className="navbarButton" href="/freeplay" style={STYLE}>Free Play</Button>
+                <Button variant="contained" className="navbarButton" href="/normalplay" style={STYLE}>Normal Play</Button>
+                <Button variant="contained" className="navbarButton" href="/rule" style={STYLE}>Play Rule</Button>
             </div>
             <div class="content">
                 <h2>How to Play Battleships</h2>

@@ -28,7 +28,6 @@
   position: absolute;
   font-size: 10vh;
   border: 2px solid lightgray;
-  /* background-color: snow; */
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/36/Large_bonfire.jpg");
   font-weight: bold;
   color: firebrick;
@@ -53,4 +52,12 @@
 h3 {
   font-size: 2vh;
   color: rgb(237, 240, 57);
+}
+
+.playerTurnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.3em;
+  margin-bottom: -0.3em;
 }

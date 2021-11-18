@@ -3,22 +3,25 @@ import { useSelector } from 'react-redux';
 import ResetButton from './ResetButton';
 import Board from './Board.jsx';
 import Button from '@mui/material/Button';
-import { AI_BOARD, PLAYER_BOARD } from '../utils/Constants';
+import { AI_BOARD, PLAYER_BOARD, STYLE } from '../utils/Constants';
 
 
 export default function NormalPlayPage() {
-    const winner = useSelector((state) => state.gameReducer).winner;
+    const gameState = useSelector((state) => state.gameReducer);
+    const winner = gameState.winner;
+    const playerTurn = gameState.playerTurn;
     return (
         <div>
             <div class="navbar">
-                <Button variant="contained" className="navbarButton" href="/" color="inherit" style={{ fontSize: '2vh' }}>Home</Button>
-                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit" style={{ fontSize: '2vh' }}>Free Play</Button>
-                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit" style={{ fontSize: '2vh' }}>Normal Play</Button>
-                <Button variant="contained" className="navbarButton" href="/rule" color="inherit" style={{ fontSize: '2vh' }}>Play Rule</Button>
+                <Button variant="contained" className="navbarButton" href="/" style={STYLE}>Home</Button>
+                <Button variant="contained" className="navbarButton" href="/freeplay" style={STYLE}>Free Play</Button>
+                <Button variant="contained" className="navbarButton" href="/normalplay" style={STYLE}>Normal Play</Button>
+                <Button variant="contained" className="navbarButton" href="/rule" style={STYLE}>Play Rule</Button>
             </div>
             <div class="buttonContainer">
                 <ResetButton text="Reset game"/>
             </div>
+            <h2 class="playerTurnBox">{playerTurn ? "Player's Turn" : "AI's Turn"}</h2>
             <div class={winner? "winnerContainer" : null}>{winner ? `Game over! ${winner} Won!` : "" }</div>
             <div class="boardContainer">
                 <div class="player">
