@@ -6,10 +6,10 @@ export default function Rule() {
     return (
         <div>
             <div class="navbar">
-                <Button variant="contained" className="navbarButton" href="/" color="inherit">Home</Button>
-                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit">Free Play</Button>
-                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit">Normal Play</Button>
-                <Button variant="contained" className="navbarButton" href="/rule" color="inherit">Play Rule</Button>
+                <Button variant="contained" className="navbarButton" href="/" color="inherit" style={{ fontSize: '2vh' }}>Home</Button>
+                <Button variant="contained" className="navbarButton" href="/freeplay" color="inherit" style={{ fontSize: '2vh' }}>Free Play</Button>
+                <Button variant="contained" className="navbarButton" href="/normalplay" color="inherit" style={{ fontSize: '2vh' }}>Normal Play</Button>
+                <Button variant="contained" className="navbarButton" href="/rule" color="inherit" style={{ fontSize: '2vh' }}>Play Rule</Button>
             </div>
             <div class="content">
                 <h2>How to Play Battleships</h2>

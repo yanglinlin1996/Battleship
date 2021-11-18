@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import '../style/Square.css';
-import { ACTION, ATTACK_SYMBOL, MISSED_SYMBOL } from '../utils/Constants';
+import { ACTION, ATTACK_SYMBOL, MISSED_SYMBOL, SHIP_SYMBOL } from '../utils/Constants';
 
 export default function Square(props) {
 
@@ -37,7 +37,6 @@ export default function Square(props) {
                     })
                 }, 1);}
         } id="square" class={bgColor}>
-            {symbol}
-            {/* {player === "human" ? (symbol === "*" ? "" : symbol) : (symbol)} */}
+            {isPlayerBoard ? (symbol === SHIP_SYMBOL ? "" : symbol) : (symbol)}
         </div>);
 }

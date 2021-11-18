@@ -10,6 +10,20 @@
   margin-top: 13vh;
 }
 
+.boardContainer {
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: 15vh;
+}
+
+.player {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .winnerContainer {
   position: absolute;
   font-size: 10vh;
@@ -28,4 +42,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width: 640px) {
+  .boardContainer {
+    flex-direction: row;
+  }
+}
+
+h3 {
+  font-size: 2vh;
+  color: rgb(237, 240, 57);
 }

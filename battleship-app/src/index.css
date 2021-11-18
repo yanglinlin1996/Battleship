@@ -17,6 +17,14 @@ html {
   align-items: center;
   background-color: lightskyblue;
   position: fixed;
-  top: 0;
+  /* top: 0; */
   left: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+@media screen and (min-width: 640px) {
+  .navbar {
+    top: 0;
+  }
 }
