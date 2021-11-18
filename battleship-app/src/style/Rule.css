@@ -1,6 +1,8 @@
 p {
   font-size: 3vh;
-  color: rgb(237, 240, 57);
+  /* color: rgb(237, 240, 57); */
+  color: snow;
+  word-spacing: 0.3vh;
 }
 
 h2 {
